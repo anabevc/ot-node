@@ -97,14 +97,14 @@ class ChallengeService {
      * @param blockSizeInBytes Desired size of each block.
      * @returns {Array} of blocks.
      */
-    getBlocks(vertices, blockSizeInBytes = constants.DEFAULT_CHALLENGE_BLOCK_SIZE_BYTES) {
-        importUtilities.sort(vertices);
+    getBlocks(graph, blockSizeInBytes = constants.DEFAULT_CHALLENGE_BLOCK_SIZE_BYTES) {
+        importUtilities.sortGraphRecursively(graph);
 
         const blocks = [];
         let block = String();
 
-        for (let i = 0; i < vertices.length; i += 1) {
-            const data = JSON.stringify(utilities.sortedStringify(vertices[i], true));
+        for (let i = 0; i < graph.length; i += 1) {
+            const data = JSON.stringify(utilities.sortedStringify(graph[i], true));
 
             if (data) {
                 for (let j = 0; j < data.length; j += blockSizeInBytes) {

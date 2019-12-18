@@ -122,7 +122,7 @@
     "remote_control_enabled": true,
     "node_remote_control_port": 3000,
     "is_bootstrap_node": false,
-    "send_logs": false,
+    "send_logs": true,
     "logs_level_debug": true,
     "reverse_tunnel_address": "diglet.origintrail.io",
     "reverse_tunnel_port": 8443,

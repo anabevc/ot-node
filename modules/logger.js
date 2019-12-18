@@ -29,8 +29,8 @@ class Logger {
      * @private
      */
     static _create() {
-        let logLevel = process.env.LOG_LEVEL ? process.env.LOG_LEVEL : DEFAULT_LOG_LEVEL;
-        if (process.env.LOGS_LEVEL_DEBUG) {
+        let logLevel = DEFAULT_LOG_LEVEL;
+        if (runtimeConfigJson.logs_level_debug) {
             logLevel = 'debug';
         }
 
@@ -64,7 +64,7 @@ class Logger {
                     }),
                 ];
 
-            if (process.env.SEND_LOGS && parseInt(process.env.SEND_LOGS, 10)) {
+            if (runtimeConfigJson.send_logs) {
                 const logglySubdomain = process.env.LOGGLY_SUBDOMAIN ?
                     process.env.LOGGLY_SUBDOMAIN : DEFAULT_LOGGLY_SUBDOMAIN;
                 const logglyInputToken = process.env.LOGGLY_INPUT_TOKEN ?
@@ -189,7 +189,7 @@ class Logger {
      * @return {*}
      */
     static transformLog(level, msg) {
-        if (process.env.LOGS_LEVEL_DEBUG) {
+        if (runtimeConfigJson.logs_level_debug) {
             return {
                 level,
                 msg,

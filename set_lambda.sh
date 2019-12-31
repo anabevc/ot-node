@@ -12,4 +12,4 @@ else
   sed -i "s/\(\"$1_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
 fi
 
-docker restart otnode && docker logs otnode
+docker restart otnode && docker logs otnode -f --tail 1000

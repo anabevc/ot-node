@@ -1,16 +1,13 @@
 #!/bin/bash
-
 if [[ -z "$3" ]]; then
-  echo "No path supplied, using default config path."
+  echo "No path provided, using default config path..."
   path="$HOME/origintrail_noderc"
 else
   path=$3
 fi
 
-if [[ "$1" = "dc" ]]; then
-  sed -i "s/\(\"dc_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
-elif [[ "$1" = "dh" ]]; then
-  sed -i "s/\(\"dh_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
+if [[ -z $(grep "$1_price_factor" "$path") ]]; then
+  sed -i "/\"blockchain\": {/a \"$1_price_factor\" : \"$2\"," "$path"
+else
+  sed -i "s/\(\"$1_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
 fi
-
-#docker restart otnode && docker logs otnode

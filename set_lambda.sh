@@ -10,9 +10,9 @@ if [[ ("$1" != "dc") && ("$1" != "dh")]]; then
   echo "Invalid argument 1!"
 else
   if [[ -z $(grep "$1_price_factor" "$path") ]]; then
-  sed -i "/\"blockchain\": {/a \"$1_price_factor\" : \"$2\"," "$path"
+    sed -i "/\"blockchain\": {/a \"$1_price_factor\" : \"$2\"," "$path"
   else
-    sed -i "s/\(\"$1_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
+    sed -i "s/\(\"$1_price_factor\" : \)\"[0-9\.]*\"/\1\"$2\"/g" "$path"
   fi
 
   docker restart otnode && docker logs otnode -f --tail 1000

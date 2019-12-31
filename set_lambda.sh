@@ -11,3 +11,5 @@ if [[ -z $(grep "$1_price_factor" "$path") ]]; then
 else
   sed -i "s/\(\"$1_price_factor\" : \)\"[0-9]*\"/\1\"$2\"/g" "$path"
 fi
+
+docker restart otnode && docker logs otnode

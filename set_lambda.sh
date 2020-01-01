@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ -z "$3" ]]; then
   echo "No path provided, using default config path..."
-  path="$HOME/origintrail_noderc"
+  path="$HOME/.origintrail_noderc"
 else
   path=$3
 fi

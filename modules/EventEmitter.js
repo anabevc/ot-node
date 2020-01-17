@@ -427,6 +427,8 @@ class EventEmitter {
 
                 const result = await this.importService.getImport(data.dataset_id);
 
+                result['@graph'] = JSON.parse(ImportUtilities.sortGraphRecursively(result['@graph']));
+
                 if (result.error != null) {
                     await processExport(result.error, data);
                 } else {
